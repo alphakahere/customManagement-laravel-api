@@ -19,7 +19,7 @@ class CreateClientsTable extends Migration
             $table->string('pseudo')->unique();
             $table->string('phone')->unique();
             $table->string('location');
-            $table->boolean('status')->default(false);
+            $table->string('status')->default('false');
             $table->timestamps();
         });
     }

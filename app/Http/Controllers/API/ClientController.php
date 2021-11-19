@@ -32,4 +32,39 @@ class ClientController extends Controller
             'message' => 'client ajouté avec success'
         ]);
     }
+
+    public function edit($id) {
+        $client = Client::find($id);
+
+        return response()->json([
+            'status' =>200,
+            'client' => $client
+        ]);
+    }
+
+    public function update(Request $request, $id) {
+        $client =  Client::find($id);
+
+        $client->name = $request->input('name');
+        $client->pseudo = $request->input('pseudo');
+        $client->phone = $request->input('phone');
+        $client->location = $request->input('location');
+        $client->status = $request->input('status');
+        $client->save();
+
+        return response()->json([
+            'status' => 200,
+            'message' => 'client modifié avec success'
+        ]);
+    }
+
+    public function destroy($id){
+        $client = Client::find($id);
+
+        $client->delete();
+
+        return response()->json([
+            'message'=>'client supprime avec success'
+        ]);
+    }
 }
